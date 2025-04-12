@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Stylesheet -->
+    <link href="style.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="assets/logo.png" class="logo" alt="Logo image"/></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto poppins-bold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Me</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section id="projects" class="container my-5">
+      <div class="text-center green-text mb-5">
+        <h3 class="large-l-text lilita-one-regular">My Projects</h3>
+        <p class="mb-4 poppins">— A Glimpse Into My Creative Journey —</p>
+      </div>
+    
+      <div class="row g-4 align-items-center">
+        <!-- Project Card Example -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="creative-card" onclick="location.href='project-detail.html?id=1';">
+            <div class="card-content">
+              <img src="./assets/java_project1.png" alt="Java Project" />
+              <div class="card-overlay">
+                <h5>Java App</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Repeat for other projects -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="creative-card" onclick="location.href='project-detail.html?id=2';">
+            <div class="card-content">
+              <img src="./assets/magazine1.png" alt="Magazine Design" />
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="creative-card" onclick="location.href='project-detail.html?id=3';">
+            <div class="card-content">
+              <img src="./assets/fyp.png" alt="FYP" />
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="creative-card" onclick="location.href='project-detail.html?id=4';">
+            <div class="card-content">
+              <img src="./assets/animation.png" alt="2D Animation" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+
+    <script>
+      const filmStrip = document.getElementById("filmStrip");
+      const carouselContainer = document.getElementById("carousel");
+    
+      // Duplicate content for seamless loop
+      filmStrip.innerHTML += filmStrip.innerHTML;
+    
+      let scrollAmount = 0;
+      const speed = 0.05; // Adjust speed for smooth motion
+      let lastTime = performance.now();
+      let isPaused = false; // Track if animation should pause
+    
+      function scrollCarousel(timestamp) {
+          if (isPaused) return; // Stop scrolling if paused
+    
+          const deltaTime = timestamp - lastTime;
+          lastTime = timestamp;
+    
+          scrollAmount += speed * deltaTime; // Move based on frame time
+          if (scrollAmount >= filmStrip.scrollWidth / 2) {
+              scrollAmount = 0;
+          }
+          
+          filmStrip.style.transform = `translateX(-${scrollAmount}px)`;
+          requestAnimationFrame(scrollCarousel);
+      }
+    
+      // Event listeners to stop and resume scrolling
+      carouselContainer.addEventListener("mouseenter", () => isPaused = true);
+      carouselContainer.addEventListener("mouseleave", () => {
+          if (isPaused) {
+              isPaused = false;
+              lastTime = performance.now(); // Reset time reference
+              requestAnimationFrame(scrollCarousel);
+          }
+      });
+    
+      // Start animation
+      requestAnimationFrame(scrollCarousel);
+    </script>
+    
+  </body>
+
+  <!-- d-flex align-items-center justify-content-center -->
+
+  <footer>©Copyright XXXX 2025.</footer>
+</html>
