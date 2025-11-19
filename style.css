@@ -148,15 +148,15 @@ nav {
     margin: 0px 8px;
     text-align: center;
     border-radius: 26px;
-    border: 1px solid rgb(0, 0, 0, 0.0);
+    border: 2px solid rgb(0, 0, 0, 0.0);
 }
 
 .navbar .nav-link:hover {
-    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: #c2b4b45f;
 }
 
 .navbar .nav-link.active {
-    border: 1px solid black;
+    border: 2px solid #866e6c;
 }
 
 .logo {
@@ -165,14 +165,6 @@ nav {
 
 section {
     /* margin-top: 48px; */
-}
-
-.full-height {
-    height: 89vh;
-}
-
-.s-height {
-    height: 40vh;
 }
 
 .large-xl-text {
@@ -213,10 +205,12 @@ section {
     justify-content: center;
     /* font-size: 24px; */
     cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .action-hyperlink:hover {
-    color: #125A35;
+    color: #614543;
+    transform: scale(1.3);
 }
 
 
@@ -245,6 +239,32 @@ section {
     font-size: 36px;
     color: #125A35;
 }
+
+.language-badge {
+    background-color: #9dc4cf77; /* soft background from your palette */
+    color: #3F5D52; /* dark green accent */
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.language-badge:hover {
+    /* transform: scale(1.05); */
+    box-shadow: 0 4px 12px rgba(63, 93, 82, 0.3);
+}
+
+.resume-box {
+    /* border: 2px solid #6B8A7A; */
+    border-radius: 20px;
+    max-width: 450px;
+    background: #ffffff7c;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+}
+
 
 /* .project-cont {
   width: 300px;
