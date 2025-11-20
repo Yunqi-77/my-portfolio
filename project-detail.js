@@ -14,32 +14,22 @@ const projects = {
         project_title: "Java Project",
         media_type: "image", 
         project_image: "./assets/java_project1.png",
-        project_desc: `<p>This Java-based application provides an efficient way to process and present data which it helps to simplify data analysis and make it more accessible, ensuring users can quickly extract valuable insights. Key features include:</p>
-        <ul>
-            <li><strong>Data Processing:</strong> The application reads data from a source file and processes it for easy visualization.</li>
-            <li><strong>Chart Presentation:</strong> The data is displayed in user-friendly charts, making complex information easy to understand.</li>
-            <li><strong>Custom UI:</strong> The user interface is custom-built, offering a personalized and seamless experience for users.</li>
-            <li><strong>Interactive Filtering:</strong> Users can filter the data results based on their preferences, focusing on the most relevant information.</li>
-            <li><strong>Enhanced Readability:</strong> By organizing and visualizing the data, the application helps users make better, faster decisions from complex datasets.</li>
-        </ul>`
+        project_desc: `<p>This Java-based application provides an efficient way to process and present data which it helps to simplify data analysis and make it more accessible, ensuring users can quickly extract valuable insights.</p>
+            <p><strong>Data Processing:</strong> The application reads data from a source file and processes it for easy visualization.</p>
+            <p><strong>Chart Presentation:</strong> The data is displayed in user-friendly charts, making complex information easy to understand.</p>
+            <p><strong>Interactive Filtering:</strong> Users can filter the data results based on their preferences.</p>`
     },
     2: {
         project_title: "Magazine Design", 
         media_type: "image", 
         project_image: "./assets/magazine1.png",
-        project_desc:   `<p>Magazine design is a creative process that involves crafting visually compelling layouts, engaging typography, 
-        and high-quality imagery to communicate a brand's message effectively. Using Adobe tools like 
-        <strong>Adobe InDesign, Photoshop, and Illustrator</strong>, designers can create stunning magazine spreads with professional aesthetics.</p>
-        <br>
-        <h4>Key Aspects of Magazine Design:</h4>
-        <ul>
-            <li><strong>Layout & Composition:</strong> Using <strong>Adobe InDesign</strong>, designers structure magazine pages with grids, 
-            columns, and balanced whitespace for an organized and readable design.</li>
-            <li><strong>Typography:</strong> Selecting the right fonts and text hierarchy enhances readability and aesthetic appeal.</li>
-            <li><strong>Image Editing & Enhancements:</strong> <strong>Adobe Photoshop</strong> is used to retouch photos, adjust colors, and enhance visual storytelling.</li>
-            <li><strong>Vector Graphics & Illustrations:</strong> <strong>Adobe Illustrator</strong> helps create custom icons, infographics, and vector-based elements 
-            that add uniqueness to the design.</li>
-        </ul>
+        project_desc:   `<p>The magazine 'ROSE AND REVERIE' was created to explore and share the meaning of the rose. </p>
+            <p><strong>Layout & Composition:</strong> Using <strong>Adobe InDesign</strong>, magazine pages are structured with grids, 
+            columns, and balanced whitespace for an organized and readable design.</p>
+            <p><strong>Typography:</strong> Selecting the right fonts and text hierarchy enhances readability and aesthetic appeal.</p>
+            <p><strong>Image Editing & Enhancements:</strong> <strong>Adobe Photoshop</strong> is used to retouch photos, adjust colors, and enhance visual storytelling.</p>
+            <p><strong>Vector Graphics & Illustrations:</strong> <strong>Adobe Illustrator</strong> helps create custom icons, infographics, and vector-based elements 
+            that add uniqueness to the design.</p>
     `
     },
     3: {
@@ -58,7 +48,7 @@ const projects = {
         <li><strong>Account Management:</strong> Handles user registration, login, and authentication.</li>
         </ul>
 
-        <h3>Technologies Used:</h3>
+        <h4><strong>Technologies Used:</strong></h4>
         <ul>
         <li><strong>Frontend:</strong> Built with HTML, CSS, and JavaScript to create an interactive and responsive user interface.</li>
         <li><strong>Backend:</strong> PHP is used for server-side logic, handling requests, and processing data.</li>
@@ -70,20 +60,11 @@ const projects = {
         project_title: "2D Animation", 
         media_type: "video",
         project_video: "./assets/animation.mp4",
-        project_desc: `<p>This project is a 2D animation created using Adobe Animate, focusing on storytelling through expressive character motion and visually appealing scenes. The animation aims to convey emotion, movement, and personality in a stylized and engaging way.</p>
-        <ul>
-        <li><strong>Character Animation:</strong> Designed and animated 2D characters with attention to facial expressions, gestures, and fluid body movements.</li>
-        <li><strong>Scene Composition:</strong> Developed backgrounds and scene transitions that support the narrative and enhance visual flow.</li>
-        <li><strong>Timeline Management:</strong> Utilized Adobe Animate's timeline tools to synchronize motion, dialogue, and effects accurately.</li>
-        <li><strong>Sound Integration:</strong> Included background music and sound effects to enhance the mood and storytelling.</li>
-        <li><strong>Symbol and Layer Optimization:</strong> Organized content using layers and reusable symbols for efficient workflow and animation reuse.</li>
-        </ul>
-        
-        <h3>Tools & Technologies Used:</h3>
-        <ul>
-        <li><strong>Adobe Animate:</strong> The primary software used for creating and exporting the animation, supporting frame-by-frame and tween-based animation techniques.</li>
-        <li><strong>Export Formats:</strong> Animation exported as HTML5 canvas or video format for web and presentation use.</li>
-        </ul>`
+        project_desc: `<p>A 2D animation created using Adobe Animate, focusing on storytelling through expressive character motion and visually appealing scenes. The animation aims to convey emotion, movement, and personality in a stylized and engaging way.</p>
+        <p><strong>Character Animation:</strong> Designed and animated 2D characters with attention to facial expressions, gestures, and fluid body movements.</p>
+        <p><strong>Scene Composition:</strong> Developed backgrounds and scene transitions that support the narrative and enhance visual flow.</p>
+        <p><strong>Timeline Management:</strong> Utilized Adobe Animate's timeline tools to synchronize motion, dialogue, and effects accurately.</p>
+        <p><strong>Sound Integration:</strong> Included background music and sound effects to enhance the mood and storytelling.</p>`
     }
 }; 
  
