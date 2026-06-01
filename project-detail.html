@@ -45,72 +45,44 @@
     </nav>
 
     <section class="section flex-fill fade-in">
-        <div class="detail-shell">
+        <div class="detail-shell detail-shell-split">
 
-            <!-- Back -->
-            <div class="reveal mb-4">
+            <!-- LEFT: sticky back button + meta sidebar -->
+            <aside class="detail-side reveal">
                 <a class="btn-ghost detail-back" href="projects.html">
                     <span class="material-symbols-outlined">arrow_back</span>
                     All projects
                 </a>
-            </div>
+                <aside class="detail-meta" id="detail-meta" hidden></aside>
+            </aside>
 
-            <!-- Editorial header (above the hero) -->
-            <header class="detail-header reveal reveal-delay-1">
-                <span class="detail-category" id="detail-category">Project</span>
-                <h1 class="detail-title" id="detail-title">Project Title</h1>
-                <p class="detail-subtitle" id="detail-subtitle">— Project subtitle —</p>
-                <div class="detail-tags" id="detail-tags"></div>
-            </header>
+            <!-- RIGHT: editorial title + content card -->
+            <div class="detail-main">
+                <header class="detail-header reveal reveal-delay-1">
+                    <span class="detail-category" id="detail-category">Project</span>
+                    <h1 class="detail-title editorial" id="detail-title">Project Title</h1>
+                    <p class="detail-subtitle" id="detail-subtitle">— Project subtitle —</p>
+                    <div class="detail-tags" id="detail-tags"></div>
+                </header>
 
-            <!-- Cinematic hero -->
-            <div class="detail-hero reveal reveal-delay-2" id="detail-hero">
-                <img id="detail-image" alt="" hidden />
-                <video id="detail-video" muted loop playsinline autoplay hidden></video>
-            </div>
-
-            <!-- Body -->
-            <article class="detail-card reveal reveal-delay-3">
-                <div class="detail-body" id="detail-body">
-                    <p>A brief yet compelling description of the project, highlighting its goals, technologies used, and
-                        what makes it stand out.</p>
-                </div>
-            </article>
-
-            <!-- Prev / Next -->
-            <nav class="detail-nav-row reveal" aria-label="Project navigation">
-                <a class="detail-nav-link detail-nav-prev" id="detail-prev" href="projects.html">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                    <div class="detail-nav-content">
-                        <span class="detail-nav-label">Previous</span>
-                        <span class="detail-nav-title" id="detail-prev-title">Browse all</span>
+                <article class="detail-card reveal reveal-delay-2">
+                    <figure class="detail-media reveal" id="detail-hero">
+                        <img id="detail-image" alt="" hidden />
+                        <video id="detail-video" muted loop playsinline autoplay hidden></video>
+                        <figcaption class="detail-media-caption" id="detail-media-caption" hidden></figcaption>
+                    </figure>
+                    <div class="detail-body" id="detail-body">
+                        <p>A brief yet compelling description of the project, highlighting its goals, technologies used,
+                            and what makes it stand out.</p>
                     </div>
-                </a>
-                <a class="detail-nav-link detail-nav-next" id="detail-next" href="projects.html">
-                    <div class="detail-nav-content detail-nav-content-end">
-                        <span class="detail-nav-label">Next</span>
-                        <span class="detail-nav-title" id="detail-next-title">Browse all</span>
-                    </div>
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </a>
-            </nav>
+
+                    <!-- Comparison gallery (used by TF Systems project) -->
+                    <div class="detail-gallery reveal" id="detail-gallery" hidden></div>
+                </article>
+            </div>
 
         </div>
     </section>
-
-    <footer>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
-                class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center icon-btn"><i
-                    class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/" target="_blank" rel="noopener"
-                class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center icon-btn"><i
-                    class="fab fa-github"></i></a>
-            <a href="mailto:yunqi.tyq@gmail.com"
-                class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center icon-btn"><i
-                    class="fas fa-envelope"></i></a>
-        </div>
-    </footer>
 
     <script src="project-detail.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

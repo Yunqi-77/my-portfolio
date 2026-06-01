@@ -88,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const typewriter = document.getElementById("typewriter");
   if (typewriter) {
     const words = [
-      "beautiful interfaces",
-      "interactive experiences",
-      "thoughtful UI",
-      "engaging stories",
-      "creative web",
+      "thoughtful interfaces",
+      "reliable web apps",
+      "user-friendly experiences",
+      "well-tested features",
+      "clean, careful code",
     ];
     let wordIndex = 0;
     let charIndex = 0;
@@ -146,6 +146,64 @@ document.addEventListener("DOMContentLoaded", function () {
       { threshold: 0.4 }
     );
     statNums.forEach((el) => counterObserver.observe(el));
+  }
+
+  // ===== About hero — scroll-linked exit animation =====
+  const aboutGrid = document.querySelector("#about .about-card-grid");
+  if (aboutGrid && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const aboutHead = document.querySelector("#about > .section-head");
+    const profileCard = aboutGrid.querySelector(".profile-card");
+    const aboutStory = aboutGrid.querySelector(".about-story");
+
+    // Targets: each gets an inline transform driven by exit progress (0 -> 1)
+    const targets = [
+      { el: aboutHead,    x:    0, y: -40, rot:   0, scaleEnd: 0.92 },
+      { el: profileCard,  x: -240, y: -80, rot: -14, scaleEnd: 0.82 },
+      { el: aboutStory,   x:  180, y: -60, rot:   8, scaleEnd: 0.94 },
+    ].filter((t) => t.el);
+
+    // After each element's entrance transition completes, swap its slow .reveal
+    // transition for a snappy one so scroll-linked updates feel immediate.
+    targets.forEach(({ el }) => {
+      el.addEventListener(
+        "transitionend",
+        () => {
+          el.style.transition = "transform 0.06s linear, opacity 0.06s linear";
+        },
+        { once: true }
+      );
+      el.style.willChange = "transform, opacity";
+    });
+
+    let pending = false;
+    const apply = () => {
+      pending = false;
+      const rect = aboutGrid.getBoundingClientRect();
+      const winH = window.innerHeight || document.documentElement.clientHeight;
+      // Exit begins when the grid's top reaches 40% of viewport height,
+      // finishes when the grid has scrolled ~40% of its own height past the top.
+      const exitStart = winH * 0.4;
+      const exitEnd = -rect.height * 0.4;
+      let p = (exitStart - rect.top) / (exitStart - exitEnd);
+      p = Math.max(0, Math.min(1, p));
+
+      targets.forEach(({ el, x, y, rot, scaleEnd }) => {
+        if (!el.classList.contains("visible")) return;
+        const s = 1 + (scaleEnd - 1) * p;
+        el.style.transform = `translate3d(${x * p}px, ${y * p}px, 0) rotate(${rot * p}deg) scale(${s})`;
+        el.style.opacity = String(Math.max(0, 1 - p * 1.05));
+      });
+    };
+
+    const onScroll = () => {
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(apply);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
   }
 
   // ===== Magnetic effect on primary buttons =====
