@@ -254,10 +254,6 @@ document.addEventListener("DOMContentLoaded", function () {
       heroVideo.hidden = false;
       heroImg.hidden = true;
       heroVideo.play().catch(() => { });
-    } else if (project.media.type === "pattern") {
-      hero.classList.add("detail-media-pattern");
-      heroImg.hidden = true;
-      heroVideo.hidden = true;
     } else {
       heroImg.src = project.media.src;
       heroImg.alt = project.media.alt || project.title;

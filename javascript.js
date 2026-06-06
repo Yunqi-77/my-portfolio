@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     animateRing();
 
     const hoverables = document.querySelectorAll(
-      "a, button, .projects-nav, .feature-card, .timeline-card, .stat-card, .skill-cat, .language-badge, .tab-chip, .icon-btn, .resume-box"
+      "a, button, .language-badge, .bento-item"
     );
     hoverables.forEach((el) => {
       el.addEventListener("mouseenter", () => ring.classList.add("is-hover"));
@@ -120,34 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
     tick();
   }
 
-  // ===== Animated Stat Counters =====
-  const statNums = document.querySelectorAll(".stat-num[data-count]");
-  if (statNums.length) {
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const target = parseInt(el.dataset.count, 10) || 0;
-          const duration = 1400;
-          const start = performance.now();
-
-          const step = (now) => {
-            const t = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - t, 3);
-            el.textContent = Math.round(eased * target);
-            if (t < 1) requestAnimationFrame(step);
-            else el.textContent = target + "+";
-          };
-          requestAnimationFrame(step);
-          counterObserver.unobserve(el);
-        });
-      },
-      { threshold: 0.4 }
-    );
-    statNums.forEach((el) => counterObserver.observe(el));
-  }
-
   // ===== About hero — scroll-linked exit animation =====
   const aboutGrid = document.querySelector("#about .about-card-grid");
   if (aboutGrid && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -157,9 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Targets: each gets an inline transform driven by exit progress (0 -> 1)
     const targets = [
-      { el: aboutHead,    x:    0, y: -40, rot:   0, scaleEnd: 0.92 },
-      { el: profileCard,  x: -240, y: -80, rot: -14, scaleEnd: 0.82 },
-      { el: aboutStory,   x:  180, y: -60, rot:   8, scaleEnd: 0.94 },
+      { el: aboutHead, x: 0, y: -40, rot: 0, scaleEnd: 0.92 },
+      { el: profileCard, x: -240, y: -80, rot: -14, scaleEnd: 0.82 },
+      { el: aboutStory, x: 180, y: -60, rot: 8, scaleEnd: 0.94 },
     ].filter((t) => t.el);
 
     // After each element's entrance transition completes, swap its slow .reveal
@@ -208,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Magnetic effect on primary buttons =====
   if (window.matchMedia("(hover: hover)").matches) {
-    const magnets = document.querySelectorAll(".btn-primary-soft, .btn-ghost, .action-hyperlink");
+    const magnets = document.querySelectorAll(".btn-primary-soft, .btn-ghost");
     magnets.forEach((btn) => {
       btn.addEventListener("mousemove", (e) => {
         const rect = btn.getBoundingClientRect();
@@ -220,34 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.style.transform = "";
       });
     });
-  }
-
-  // ===== Projects Filter =====
-  const filterBar = document.querySelector(".filter-bar");
-  const bentoItems = document.querySelectorAll(".bento-item");
-  const bentoEmpty = document.querySelector(".bento-empty");
-  const bentoGrid = document.querySelector(".bento-grid");
-  if (filterBar && bentoItems.length) {
-    const applyFilter = (cat) => {
-      let visible = 0;
-      bentoItems.forEach((item) => {
-        const match = cat === "all" || item.dataset.category === cat;
-        item.classList.toggle("is-hidden", !match);
-        if (match) visible++;
-      });
-      if (bentoEmpty) bentoEmpty.hidden = visible > 0;
-      if (bentoGrid) bentoGrid.classList.toggle("is-filtered", cat !== "all");
-      filterBar.querySelectorAll(".filter-chip").forEach((chip) => {
-        chip.classList.toggle("active", chip.dataset.filter === cat);
-      });
-    };
-
-    filterBar.querySelectorAll(".filter-chip").forEach((chip) => {
-      chip.addEventListener("click", () => applyFilter(chip.dataset.filter));
-    });
-
-    const initial = filterBar.dataset.defaultFilter || "all";
-    applyFilter(initial);
   }
 
   // ===== Bento Tilt Effect (subtle) =====
@@ -274,15 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
     else vid.addEventListener("loadeddata", tryPlay, { once: true });
   });
 
-  // ===== Copy email on home finale =====
+  // ===== Copy email button (contact section) =====
   const copyBtn = document.getElementById("copyEmailBtn");
   if (copyBtn) {
-    const valueEl = copyBtn.querySelector(".contact-value");
-    const labelEl = copyBtn.querySelector(".contact-label");
-    const iconEl = copyBtn.querySelector(".contact-action .material-symbols-outlined");
-    const originalValue = valueEl ? valueEl.textContent : "";
-    const originalLabel = labelEl ? labelEl.textContent : "";
-    const originalIcon = iconEl ? iconEl.textContent : "content_copy";
+    const iconEl = copyBtn.querySelector(".material-symbols-outlined");
+    let resetTimer;
 
     copyBtn.addEventListener("click", async () => {
       const email = copyBtn.dataset.email || "";
@@ -300,22 +240,107 @@ document.addEventListener("DOMContentLoaded", function () {
           document.body.removeChild(ta);
         }
         copyBtn.classList.add("is-copied");
-        if (valueEl) valueEl.textContent = "Copied to clipboard!";
-        if (labelEl) labelEl.textContent = "Email";
         if (iconEl) iconEl.textContent = "check";
-        setTimeout(() => {
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
           copyBtn.classList.remove("is-copied");
-          if (valueEl) valueEl.textContent = originalValue;
-          if (labelEl) labelEl.textContent = originalLabel;
-          if (iconEl) iconEl.textContent = originalIcon;
-        }, 2200);
+          if (iconEl) iconEl.textContent = "content_copy";
+        }, 2000);
       } catch (e) {
         window.location.href = `mailto:${email}`;
       }
     });
   }
 
-  // ===== Year in footer =====
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // ===== Self-typing contact terminal =====
+  const term = document.getElementById("contactTerm");
+  if (term && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Script of lines — mirrors the static HTML fallback inside #contactTerm.
+    const script = [
+      { type: "cmd", text: "whoami" },
+      { type: "out", name: "Than Yun Qi — Web Developer & QA Tester" },
+      { type: "cmd", text: "cat contact.txt" },
+      { type: "out", key: "email:", pad: "    ", href: "mailto:yunqi.tyq@gmail.com", value: "yunqi.tyq@gmail.com" },
+      { type: "out", key: "location:", pad: " ", value: "Malaysia" },
+      { type: "out", key: "status:", pad: "   ", value: "open to opportunities" },
+      { type: "cmd", text: "./say-hello.sh", last: true },
+    ];
+
+    const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+    const cursor = document.createElement("span");
+    cursor.className = "term-cursor";
+
+    const newLine = (extraClass) => {
+      const el = document.createElement("div");
+      el.className = "term-line" + (extraClass ? " " + extraClass : "");
+      term.appendChild(el);
+      term.scrollTop = term.scrollHeight;
+      return el;
+    };
+
+    const run = async () => {
+      term.innerHTML = "";
+      for (const line of script) {
+        if (line.type === "cmd") {
+          const el = newLine();
+          const prompt = document.createElement("span");
+          prompt.className = "term-prompt";
+          prompt.textContent = "$";
+          el.appendChild(prompt);
+          el.appendChild(document.createTextNode(" "));
+          const cmd = document.createElement("span");
+          cmd.className = "term-cmd";
+          el.appendChild(cmd);
+          el.appendChild(cursor);
+          for (const ch of line.text) {
+            cmd.textContent += ch;
+            await sleep(60);
+          }
+          if (line.last) break;          // leave the caret blinking here
+          cursor.remove();
+          await sleep(320);
+        } else {
+          const el = newLine("term-out is-revealing");
+          if (line.name) {
+            const n = document.createElement("span");
+            n.className = "term-name";
+            n.textContent = line.name;
+            el.appendChild(n);
+          } else {
+            const k = document.createElement("span");
+            k.className = "term-key";
+            k.textContent = line.key;
+            el.appendChild(k);
+            el.appendChild(document.createTextNode(line.pad || " "));
+            if (line.href) {
+              const a = document.createElement("a");
+              a.className = "term-email";
+              a.href = line.href;
+              a.textContent = line.value;
+              el.appendChild(a);
+            } else {
+              el.appendChild(document.createTextNode(line.value));
+            }
+          }
+          await sleep(line.name ? 360 : 200);
+        }
+      }
+    };
+
+    let started = false;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            obs.unobserve(term);
+            run();
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+    obs.observe(term);
+  }
+
 });
