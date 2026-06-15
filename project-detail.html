@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Detail · Than Yun Qi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="assets/logo.png" class="logo" alt="Logo" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto poppins-bold">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section flex-fill fade-in">
+        <div class="detail-shell detail-shell-split">
+
+            <!-- LEFT: sticky back button + meta sidebar -->
+            <aside class="detail-side reveal">
+                <a class="btn-ghost detail-back" href="projects.html">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    All projects
+                </a>
+                <aside class="detail-meta" id="detail-meta" hidden></aside>
+            </aside>
+
+            <!-- RIGHT: editorial title + content card -->
+            <div class="detail-main">
+                <header class="detail-header reveal reveal-delay-1">
+                    <span class="detail-category" id="detail-category">Project</span>
+                    <h1 class="detail-title editorial" id="detail-title">Project Title</h1>
+                    <p class="detail-subtitle" id="detail-subtitle">— Project subtitle —</p>
+                    <div class="detail-tags" id="detail-tags"></div>
+                </header>
+
+                <article class="detail-card reveal reveal-delay-2">
+                    <figure class="detail-media reveal" id="detail-hero">
+                        <img id="detail-image" alt="" hidden />
+                        <video id="detail-video" muted loop playsinline autoplay hidden></video>
+                        <figcaption class="detail-media-caption" id="detail-media-caption" hidden></figcaption>
+                    </figure>
+                    <div class="detail-body" id="detail-body">
+                        <p>A brief yet compelling description of the project, highlighting its goals, technologies used,
+                            and what makes it stand out.</p>
+                    </div>
+
+                    <!-- Comparison gallery (used by TF Systems project) -->
+                    <div class="detail-gallery reveal" id="detail-gallery" hidden></div>
+                </article>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="project-detail.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+</body>
+
+</html>
